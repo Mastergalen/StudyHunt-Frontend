@@ -4,8 +4,8 @@ import FontIcon from 'material-ui/FontIcon';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import CardExample from './CardExample.js';
+
+import MainPage from './MainPage.js';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 injectTapEventPlugin();
@@ -16,7 +16,6 @@ var buttonStyles = {
 var stickyNavStyle = {
   zIndex: '999'
 }
-var cards = [];
 
 class Dashboard extends Component {
   state = {
@@ -26,11 +25,7 @@ class Dashboard extends Component {
 
   handleToggle = () => this.setState({open: !this.state.open});
 
-  expandedCards(){
 
-    for(var i=0;i<=20;i++)
-    cards.push(<CardExample />);
-  }
   render() {
     return (
       <div>
@@ -53,13 +48,9 @@ class Dashboard extends Component {
           <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
         </Drawer>
 
-        <div >
-        <RaisedButton style={buttonStyles} primary={true} label="Browse A-Z" />
-        <RaisedButton style={buttonStyles} primary={true} label="Search" />
-        </div>
 
-        {this.expandedCards()}
-        {cards}
+        <MainPage />
+
         </StickyContainer>
       </div>
     );
