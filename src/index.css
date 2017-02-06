@@ -9,16 +9,20 @@ body {
   margin: 0;
 }
 .circleSize {
-  width: 70%;
-  max-width: 200px;
-  margin-left: 15%;
+  width:200px;
+  /*margin-left: 15%;*/
+  margin: 0 auto;
 }
 .circleProgress {
   width: 49%;
   text-align: center;
   margin: 0;
 }
-
+.list-container{
+  width:80%;
+  margin:0 auto;
+  border: 1.5px solid grey;
+}
 @media only screen and (min-width:501px){
   .image-container{
     width: 100vw;
@@ -39,7 +43,7 @@ body {
   }
   .circleSize {
     width: 70%;
-    margin-left: 15%;
+    margin:0 auto;
   }
   .circleProgress {
     width: 49%;

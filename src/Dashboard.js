@@ -6,6 +6,8 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
 import MainPage from './MainPage.js';
+import BrowseAZ from './BrowseAZ.js';
+import SearchPage from './SearchPage.js';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 injectTapEventPlugin();
@@ -20,9 +22,21 @@ var stickyNavStyle = {
 class Dashboard extends Component {
   state = {
     title: "StudyHunter",
-    open: false
+    open: false,
+    browseBtn: false,
+    searchBtn: false
   };
-
+  changeBrowse = () => this.setState({browseBtn: true, searchBtn: false});
+  changeSearch = () => this.setState({searchBtn: true, browseBtn: false});
+  changeMain = () => this.setState({browseBtn: false, searchBtn: false});
+  ifNotMain(){
+    if(this.state.browseBtn===true&&this.state.searchBtn===false)
+    return (<BrowseAZ changeMain={this.changeMain} />);
+    else if(this.state.browseBtn===false&&this.state.searchBtn===true)
+          return (<SearchPage changeMain={this.changeMain} />);
+          else
+              return (<MainPage changeBrowse={this.changeBrowse} changeSearch={this.changeSearch}/>);
+  }
   handleToggle = () => this.setState({open: !this.state.open});
 
 
@@ -48,8 +62,7 @@ class Dashboard extends Component {
           <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
         </Drawer>
 
-
-        <MainPage />
+        {this.ifNotMain()}
 
         </StickyContainer>
       </div>

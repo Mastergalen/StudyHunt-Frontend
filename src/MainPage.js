@@ -3,6 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Line, Circle } from 'rc-progress';
+
 var actionStyles = {
  paddingTop: '20px',
  paddingBottom: '20px',
@@ -10,19 +11,6 @@ var actionStyles = {
 }
 var alignedItem = {
   marginRight: '20px'
-}
-var circleProgress = {
-  width: '49%',
-  textAlign: 'center',
-  margin: 0
-}
-var inLine = {
-  display: 'flex',
-  textAlign: 'center'
-}
-var circleSize = {
-  width: '70%',
-  marginLeft:'15%'
 }
 class MainPage extends Component {
 
@@ -40,9 +28,9 @@ class MainPage extends Component {
         </CardMedia>
         <CardActions style={actionStyles}>
         <div >
-        <RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" />
+        <RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" onTouchTap={this.props.changeBrowse} />
 
-        <RaisedButton primary={true} label="Search" />
+        <RaisedButton primary={true} label="Search" onTouchTap={this.props.changeSearch} />
         </div>
         </CardActions>
 
