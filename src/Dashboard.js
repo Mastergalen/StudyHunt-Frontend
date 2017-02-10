@@ -58,8 +58,10 @@ class Dashboard extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
+          <MenuItem onTouchTap={this.changeMain}>Home</MenuItem>
+          <MenuItem onTouchTap={this.changeBrowse}>Browse A-Z</MenuItem>
+          <MenuItem onTouchTap={this.changeSearch}>Search</MenuItem>
+          <MenuItem onTouchTap={this.handleClose}>More info</MenuItem>
         </Drawer>
 
         {this.ifNotMain()}

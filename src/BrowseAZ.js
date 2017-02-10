@@ -16,7 +16,7 @@ class BrowseAZ extends Component {
   render() {
     return (
       <div>
-        <RaisedButton primary={true} label="< Back" onTouchTap={this.props.changeMain} />
+        <RaisedButton primary={true} className="back-button" label="< Back" onTouchTap={this.props.changeMain}> </RaisedButton>
       <div className="list-container">
       <List>
         <ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/>
