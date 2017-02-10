@@ -6,6 +6,7 @@ import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import 'whatwg-fetch';
+import { Link } from 'react-router';
 const underlineStyle = {
   borderColor: 'orange'
 }
@@ -42,7 +43,7 @@ class SearchPage extends Component {
   render() {
     return (
       <div>
-        <RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={this.props.changeMain} />
+      <Link to="/"><RaisedButton className="back-button" primary={true} label="< Back" /></Link>
         <center><TextField
       hintText="Search here"
       underlineStyle={underlineStyle}

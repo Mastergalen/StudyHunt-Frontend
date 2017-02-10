@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Library from 'material-ui/svg-icons/action/account-balance';
 import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router';
 class BrowseAZ extends Component {
   state = {
     title: "StudyHunter",
@@ -16,7 +17,7 @@ class BrowseAZ extends Component {
   render() {
     return (
       <div>
-        <RaisedButton primary={true} className="back-button" label="< Back" onTouchTap={this.props.changeMain}> </RaisedButton>
+        <Link to="/"><RaisedButton primary={true} className="back-button" label="< Back"></RaisedButton> </Link>
       <div className="list-container">
       <List>
         <ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/>

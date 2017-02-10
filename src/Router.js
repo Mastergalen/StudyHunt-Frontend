@@ -3,15 +3,22 @@ import { Router as ReactRouter, IndexRoute, Route, Link, browserHistory } from '
 
 import Chart from './d3/Chart';
 import App from './App';
-import Dashboard from './Dashboard';
+import BrowseAZ from './BrowseAZ';
+import MainPage from './MainPage';
+import SearchPage from './SearchPage';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 export default class Router extends Component {
   render() {
     return(
       <ReactRouter history={browserHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Dashboard}/>
+          <IndexRoute component={MainPage}/>
           <Route path="chart" component={Chart}/>
+          <Route path="browse" component={BrowseAZ}/>
+          <Route path="search" component={SearchPage}/>
         </Route>
       </ReactRouter>
     );

@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Line, Circle } from 'rc-progress';
-
+import { Link } from 'react-router';
 var actionStyles = {
  paddingTop: '20px',
  paddingBottom: '20px',
@@ -28,9 +28,9 @@ class MainPage extends Component {
         </CardMedia>
         <CardActions style={actionStyles}>
         <div >
-        <RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" onTouchTap={this.props.changeBrowse} />
+        <Link to="/browse"><RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" /></Link>
 
-        <RaisedButton primary={true} label="Search" onTouchTap={this.props.changeSearch} />
+        <Link to="/search"><RaisedButton primary={true} label="Search"  /></Link>
         </div>
         </CardActions>
 
