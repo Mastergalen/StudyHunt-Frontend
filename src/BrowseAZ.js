@@ -20,7 +20,7 @@ class BrowseAZ extends Component {
         <Link to="/"><RaisedButton primary={true} className="back-button" label="< Back"></RaisedButton> </Link>
       <div className="list-container">
       <List>
-        <ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/>
+        <Link to="library" style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/></Link>
         <ListItem leftIcon={<Library />} rightIcon={<Arrow />}primaryText="Science Library"/>
         <ListItem leftIcon={<Library />} rightIcon={<Arrow />}primaryText="Main Library"/>
         <ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/>

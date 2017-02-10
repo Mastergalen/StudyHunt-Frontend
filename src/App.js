@@ -16,6 +16,7 @@ import { Link } from 'react-router';
 var stickyNavStyle = {
   zIndex: '999'
 }
+
 class App extends Component {
   state = {
     title: "StudyHunter",
@@ -41,10 +42,10 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <Link to="/"><MenuItem>Home</MenuItem></Link>
-          <Link to="/browse"><MenuItem>Browse A-Z</MenuItem></Link>
-          <Link to="/search"><MenuItem>Search</MenuItem></Link>
-          <Link to="/"><MenuItem>More info</MenuItem></Link>
+          <Link to="/" style={{textDecoration:'none'}}><MenuItem >Home</MenuItem></Link>
+          <Link to="/browse" style={{textDecoration:'none'}}><MenuItem>Browse A-Z</MenuItem></Link>
+          <Link to="/search" style={{textDecoration:'none'}}><MenuItem>Search</MenuItem></Link>
+          <Link to="/" style={{textDecoration:'none'}}><MenuItem>More info</MenuItem></Link>
         </Drawer>
 
 
