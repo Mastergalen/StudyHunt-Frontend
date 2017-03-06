@@ -55,6 +55,7 @@ body {
 .back-button {
   margin: 10px;
 }
+
 @media only screen and (min-width:501px){
 .seating-area {
   width: 100%;
@@ -140,17 +141,13 @@ body {
   .seating-area {
     width: 100vw;
     background-color: #ECEFF1;
-    //height: 600px;
-    //display: flex;
   }
   .four-seats{
     display:flex;
-    //margin: 4%;
     margin-top:25px;
     width:100%;
 
     flex-wrap: wrap;
     background-color: #CFD8DC;
   }
-
 }

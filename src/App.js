@@ -1,60 +1,83 @@
 import React, { Component } from 'react';
-import './App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import FontIcon from 'material-ui/FontIcon';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import {connect} from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-
-import MainPage from './MainPage.js';
-import BrowseAZ from './BrowseAZ.js';
-import SearchPage from './SearchPage.js';
+import {replace} from "react-router-redux";
+import AppBar from 'material-ui/AppBar';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { Link } from 'react-router';
+import * as actions from './actions/actions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-var stickyNavStyle = {
-  zIndex: '999'
+const styles = {
+  stickyNav: {
+    zIndex: '999'
+  }
 }
 
 class App extends Component {
-  state = {
-    title: "StudyHunter",
-    open: false,
-  };
-  handleToggle = () => this.setState({open: !this.state.open});
+
+  handleMenuToggle() {
+    const {dispatch, drawerOpen} = this.props;
+
+    dispatch(actions.setDrawer(!drawerOpen));
+  }
+
   render() {
+    const {dispatch, drawerOpen} = this.props;
+
     return (
       <MuiThemeProvider>
-      <div>
-      <StickyContainer>
-        <Sticky style={stickyNavStyle}>
-        <AppBar
-        title={this.state.title}
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
-        onLeftIconButtonTouchTap={this.handleToggle}
-
-        />
+        <StickyContainer>
+          <Sticky style={styles.stickyNav}>
+            <AppBar
+            title={this.props.title}
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={this.handleMenuToggle.bind(this)}
+            />
           </Sticky>
-        <Drawer
-          docked={false}
-          width={200}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
-        >
-          <Link to="/" style={{textDecoration:'none'}}><MenuItem >Home</MenuItem></Link>
-          <Link to="/browse" style={{textDecoration:'none'}}><MenuItem>Browse A-Z</MenuItem></Link>
-          <Link to="/search" style={{textDecoration:'none'}}><MenuItem>Search</MenuItem></Link>
-          <Link to="/" style={{textDecoration:'none'}}><MenuItem>More info</MenuItem></Link>
-        </Drawer>
-
-
+          <Drawer
+            docked={false}
+            width={200}
+            open={drawerOpen}
+            onRequestChange={(open) => {
+              dispatch(actions.setDrawer(open));
+            }}
+          >
+            <MenuItem onTouchTap={() => {
+              dispatch(replace('/'));
+              dispatch(actions.setDrawer(false));
+            }}>Home</MenuItem>
+            <MenuItem onTouchTap={() => {
+              dispatch(replace('/browse'));
+              dispatch(actions.setDrawer(false));
+            }}>Browse A-Z</MenuItem>
+            <MenuItem onTouchTap={() => {
+              dispatch(replace('/search'));
+              dispatch(actions.setDrawer(false));
+            }}>Search</MenuItem>
+            <MenuItem onTouchTap={() => {
+              console.error('TODO Implement this menu item');
+            }}>More info</MenuItem>
+          </Drawer>
+          {this.props.children}
         </StickyContainer>
-        {this.props.children}
-        </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  children: React.PropTypes.node.isRequired,
+  drawerOpen: React.PropTypes.bool.isRequired,
+  title: React.PropTypes.string.isRequired,
+  dispatch: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    drawerOpen: state.ui.drawerOpen,
+    title: state.ui.title
+  }
+}
+
+export default connect(mapStateToProps)(App);

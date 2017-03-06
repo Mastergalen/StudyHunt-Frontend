@@ -1,36 +1,37 @@
 import React, {Component} from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Line, Circle } from 'rc-progress';
-import { Link } from 'react-router';
+import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Circle } from 'rc-progress';
+
 var actionStyles = {
- paddingTop: '20px',
- paddingBottom: '20px',
- textAlign:'center',
+  paddingTop: '20px',
+  paddingBottom: '20px',
+  textAlign:'center',
 }
 var alignedItem = {
   marginRight: '20px'
 }
-class MainPage extends Component {
 
+class Dashboard extends Component {
   render() {
     return (
       <div>
       <Card>
-
         <CardMedia
           overlay={<CardTitle title="Welcome to StudyHunter"/>}
         >
-
-          <img className="main-image" src="https://www.ucl.ac.uk/new-students/newsfeed/0000-student-life-new/ucl_library.jpg" />
-
+          <img alt="Library Header" className="main-image" src="https://www.ucl.ac.uk/new-students/newsfeed/0000-student-life-new/ucl_library.jpg" />
         </CardMedia>
         <CardActions style={actionStyles}>
-        <div >
-        <Link to="/browse"><RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" /></Link>
+        <div>
+          <Link to="browse">
+            <RaisedButton   style={alignedItem} primary={true} label="Browse A-Z" />
+          </Link>
 
-        <Link to="/search"><RaisedButton primary={true} label="Search"  /></Link>
+          <Link to="search">
+            <RaisedButton primary={true} label="Search" />
+          </Link>
         </div>
         </CardActions>
 
@@ -57,4 +58,4 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage;
+export default Dashboard;
