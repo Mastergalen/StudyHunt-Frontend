@@ -26,7 +26,8 @@ class SearchPage extends Component {
     return (
       <div >
       <Link to="/browse"><RaisedButton className="back-button" primary={true} label="< Back" /></Link>
-        <center><h2> Cruciform </h2></center>
+        <center><h2> Cruciform </h2>
+        <div> Available spaces: </div></center>
       <div style={d3}>
       <h1> d3.js thingy </h1>
       </div>

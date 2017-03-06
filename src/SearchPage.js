@@ -25,14 +25,14 @@ class SearchPage extends Component {
     {
       var self = this;
       this.setState({searchTerm: e.target.value});
-      fetch('https://itunes.apple.com/search?term=' + self.state.searchTerm)
+      fetch('http://localhost:4000/api/v1/search?q=' + self.state.searchTerm)
      .then(function(response) {
        return response.json()
      }).then(function(json) {
        console.log('parsed json', json)
 
        //cardarray = json.results;
-       self.setState({spaces: json.results})
+       self.setState({spaces: json})
      }).catch(function(ex) {
        console.log('parsing failed', ex)
      })
@@ -52,7 +52,8 @@ class SearchPage extends Component {
       <div className="list-container">
       <List>
       {this.state.spaces.map(function(item, i){
-          return (<ListItem leftIcon={<Library />} key={i} primaryText={item.trackName} />)
+          console.log(item);
+          return (<ListItem leftIcon={<Library />} key={i} primaryText={item.name} />)
         },this)}
       </List>
       </div>
