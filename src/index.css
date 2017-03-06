@@ -55,3 +55,102 @@ body {
 .back-button {
   margin: 10px;
 }
+@media only screen and (min-width:501px){
+.seating-area {
+  width: 100%;
+  background-color: #ECEFF1;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.four-seats{
+  display:flex;
+  margin: 4%;
+  width:25%;
+  max-width: 300px;
+  flex-wrap: wrap;
+  background-color: #CFD8DC;
+}
+}
+.empty-seat{
+  background-color: #4CAF50;
+  color:white;
+  text-align:center;
+  line-height: 70px;
+  border-radius: 20px;
+  font-size: 24px;
+  width:30%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  height:70px;
+}
+.taken-seat{
+  background-color: #f44336;
+  color:black;
+  text-align:center;
+  line-height: 70px;
+  border-radius: 20px;
+  font-size: 24px;
+  width:30%;
+  margin: 10%;
+  height:70px;
+}
+.table-container {
+  width: 100%;
+}
+.half-table-top {
+  width: 90%;
+  margin: 0 auto;
+
+  text-align:center;
+  line-height: 35px;
+  height: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color:white;
+  background-color: #3F51B5;
+
+}
+.half-table-bottom {
+  width: 90%;
+  margin: 0 auto;
+  text-align:center;
+  line-height: 70px;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color:white;
+  background-color: #3F51B5;
+
+}
+.table{
+  width: 90%;
+  margin: 0 auto;
+  text-align:center;
+  line-height: 100px;
+  height: 100px;
+  border-radius: 10px;
+  color:white;
+  background-color: #3F51B5;
+
+}
+@media only screen and (max-width: 500px) {
+  .seating-area {
+    width: 100vw;
+    background-color: #ECEFF1;
+    //height: 600px;
+    //display: flex;
+  }
+  .four-seats{
+    display:flex;
+    //margin: 4%;
+    margin-top:25px;
+    width:100%;
+
+    flex-wrap: wrap;
+    background-color: #CFD8DC;
+  }
+
+}

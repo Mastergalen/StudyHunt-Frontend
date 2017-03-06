@@ -29,7 +29,31 @@ class SearchPage extends Component {
         <center><h2> Cruciform </h2>
         <div> Available spaces: </div></center>
       <div style={d3}>
-      <h1> d3.js thingy </h1>
+      <div className="seating-area">
+      <div className="four-seats">
+      <div className="empty-seat"> 1 </div>
+      <div className="taken-seat"> 2 </div>
+      <div className="table-container"> <div className="table"> Table </div> </div>
+      <div className="empty-seat"> 3 </div>
+      <div className="empty-seat"> 4 </div>
+      </div>
+      <div className="four-seats">
+      <div className="table-container"> <div className="half-table-top"> Table </div> </div>
+      <div className="empty-seat"> 1 </div>
+      <div className="taken-seat"> 2 </div>
+      <div className="empty-seat"> 3 </div>
+      <div className="empty-seat"> 4 </div>
+      <div className="table-container"> <div className="half-table-bottom"> Table </div> </div>
+      </div>
+      <div className="four-seats">
+      <div className="empty-seat"> 1 </div>
+      <div className="taken-seat"> 2 </div>
+      <div className="table-container"> <div className="table"> Table </div> </div>
+      <div className="empty-seat"> 3 </div>
+      <div className="empty-seat"> 4 </div>
+      </div>
+      </div>
+      <h1></h1>
       </div>
       </div>
     );
