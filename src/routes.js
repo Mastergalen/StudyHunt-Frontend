@@ -1,11 +1,11 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
 
-import BrowseAZ from './BrowseAZ.js';
-import SearchPage from './SearchPage';
-import App from './App';
-import Dashboard from './Dashboard';
-import LibrarySimulator from './simulation/LibrarySimulator';
+import BrowseAZ from './components/BrowseAZ.js';
+import SearchPage from './components/SearchPage';
+import App from './components/App';
+import Dashboard from './components/Dashboard';
+import LibrarySimulator from './components/simulation/LibrarySimulator';
 
 const Routes = (
   <Route path="/" component={App}>
