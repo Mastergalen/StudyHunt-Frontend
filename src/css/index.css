@@ -3,6 +3,11 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.main-container {
+  margin-top: 10px;
+}
+
 .inLine {
   display: flex;
   text-align: center;
