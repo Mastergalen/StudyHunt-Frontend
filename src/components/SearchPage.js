@@ -5,6 +5,8 @@ import Library from 'material-ui/svg-icons/action/account-balance';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import 'whatwg-fetch';
+import env from '../constants/env';
+
 const underlineStyle = {
   borderColor: 'orange'
 }
@@ -19,20 +21,18 @@ class SearchPage extends Component {
     };
   }
 
-  handleSearch = (e) => {
+  async handleSearch(e) {
     if(e.target.value.length>=3) {
-      var self = this;
       this.setState({searchTerm: e.target.value});
-      fetch('http://localhost:4000/api/v1/search?q=' + self.state.searchTerm)
-      .then(function(response) {
-        return response.json()
-      }).then(function(json) {
-        console.log('parsed json', json)
+      try {
+        let res = await fetch(`${env.BACKEND_URL}/api/v1/search?q=${this.state.searchTerm}`)
 
-        self.setState({spaces: json})
-      }).catch(function(ex) {
+        let json = await res.json();
+
+        this.setState({spaces: json});
+      } catch (ex) {
         console.log('parsing failed', ex)
-      })
+      }
     }
   }
 
@@ -46,7 +46,7 @@ class SearchPage extends Component {
           <TextField
             hintText="Search here"
             underlineStyle={underlineStyle}
-            onChange={this.handleSearch}
+            onChange={this.handleSearch.bind(this)}
           />
         </center>
         <div className="list-container">
