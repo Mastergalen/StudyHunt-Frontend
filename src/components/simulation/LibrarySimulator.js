@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Dashboard from 'react-dazzle';
 import ThermostatWidget from './widgets/ThermostatWidget';
 import CustomFrame from './widgets/CustomFrame';
 import LightWidget from './widgets/LightWidget';
 
+import * as simulationActions from '../../actions/simulation';
+
 import 'react-dazzle/lib/style/style.css';
 import '../../css/grid.css';
 
 class LibrarySimulator extends Component {
+  componentWillMount() {
+    const {dispatch} = this.props;
+
+    dispatch(simulationActions.connectToServer());
+  }
+
   constructor(props) {
     super(props);
 
@@ -15,12 +24,9 @@ class LibrarySimulator extends Component {
       widgets: {
         Thermostat: {
           type: ThermostatWidget,
-          title: 'Thermostat'
         },
         Light: {
-          type: LightWidget,
-          title: 'Lights',
-          backgroundColor: '#009688'
+          type: LightWidget
         }
       },
       layout: {
@@ -49,4 +55,8 @@ class LibrarySimulator extends Component {
   }
 }
 
-export default LibrarySimulator;
+LibrarySimulator.propTypes = {
+  dispatch: React.PropTypes.func.isRequired
+}
+
+export default connect()(LibrarySimulator);

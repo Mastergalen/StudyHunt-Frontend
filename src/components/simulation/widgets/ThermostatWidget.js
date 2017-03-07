@@ -1,14 +1,25 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Widget from "./Widget";
 
 class ThermostatWidget extends Component {
   render() {
     return (
       <Widget title="Thermostat">
-        22.0°C
+        {this.props.temperature}°C
       </Widget>
     );
   }
 }
 
-export default ThermostatWidget;
+ThermostatWidget.propTypes = {
+  temperature: React.PropTypes.string.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    temperature: state.simulation.temperature
+  }
+}
+
+export default connect(mapStateToProps)(ThermostatWidget);
