@@ -30,6 +30,7 @@ class SearchPage extends Component {
         let json = await res.json();
 
         this.setState({spaces: json});
+        //console.log(json);
       } catch (ex) {
         console.log('parsing failed', ex)
       }
@@ -52,7 +53,7 @@ class SearchPage extends Component {
         <div className="list-container">
         <List>
           {this.state.spaces.map(function(item, i){
-            return (<ListItem leftIcon={<Library />} key={i} primaryText={item.name} />)
+            return (<Link to={'/library/' + item.id} key={i} style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} key={i} primaryText={item.name} id={item.id} /></Link>)
           },this)}
         </List>
         </div>
