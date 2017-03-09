@@ -76,11 +76,11 @@ class SearchPage extends Component {
         this.state.seats.map(function(item,i) {
           return(
             <div className="four-seats" key={i}>
-            {item.seat1.is_vacant ? <div className="empty-seat"> 1 </div> : <div className="taken-seat"> 1 </div>}
-            {item.seat2.is_vacant ? <div className="empty-seat"> 2 </div> : <div className="taken-seat"> 2 </div>}
+            {item.seat1.is_vacant ? <div className="empty-seat"> {item.seat1.id} </div> : <div className="taken-seat"> {item.seat1.id} </div>}
+            {item.seat2.is_vacant ? <div className="empty-seat"> {item.seat2.id} </div> : <div className="taken-seat"> {item.seat2.id} </div>}
             <div className="table-container"> <div className="table"> Table </div> </div>
-            {item.seat3.is_vacant ? <div className="empty-seat"> 3 </div> : <div className="taken-seat"> 3 </div>}
-            {item.seat4.is_vacant ? <div className="empty-seat"> 4 </div> : <div className="taken-seat"> 4 </div>}
+            {item.seat3.is_vacant ? <div className="empty-seat"> {item.seat3.id} </div> : <div className="taken-seat"> {item.seat3.id} </div>}
+            {item.seat4.is_vacant ? <div className="empty-seat"> {item.seat4.id} </div> : <div className="taken-seat"> {item.seat4.id} </div>}
             </div>)
         })
       }
