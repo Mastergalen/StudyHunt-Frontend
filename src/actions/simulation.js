@@ -15,9 +15,10 @@ export function connectToServer() {
 
       newSocket = io(env.BACKEND_URL);
 
+      dispatch(connected(newSocket));
+
       newSocket.on('connect',() => {
         debug('Connected');
-        dispatch(connected(newSocket));
       });
 
       newSocket.on('UPDATE_FRONTEND', (payload) => {
@@ -41,8 +42,17 @@ export function connected(socket) {
 }
 
 export function disconnected() {
-  return {
-    type: types.SERVER_DISCONNECTED
+  return (dispatch, getState) => {
+    let socket = getState().simulation.socket;
+
+    debug('socket', socket);
+    if(socket !== null) {
+      socket.disconnect();
+    }
+
+    dispatch({
+      type: types.SERVER_DISCONNECTED
+    });
   }
 }
 

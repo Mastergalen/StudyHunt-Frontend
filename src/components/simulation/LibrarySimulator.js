@@ -17,6 +17,12 @@ class LibrarySimulator extends Component {
     dispatch(simulationActions.connectToServer());
   }
 
+  componentWillUnmount() {
+    const {dispatch} = this.props;
+
+    dispatch(simulationActions.disconnected());
+  }
+
   constructor(props) {
     super(props);
 
