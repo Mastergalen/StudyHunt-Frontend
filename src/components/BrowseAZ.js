@@ -4,8 +4,25 @@ import {Link} from 'react-router';
 import Library from 'material-ui/svg-icons/action/account-balance';
 import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import env from '../constants/env';
 class BrowseAZ extends Component {
+  state = {
+    spaces:[]
+  }
+  async getLibraries() {
+
+      try {
+        let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries`)
+
+        let json = await res.json();
+        this.setState({spaces: json});
+      } catch (ex) {
+        console.log('parsing failed', ex)
+      }
+  }
+  componentDidMount(){
+    this.getLibraries();
+  }
   render() {
     return (
       <div>
@@ -14,10 +31,9 @@ class BrowseAZ extends Component {
         </Link>
       <div className="list-container">
       <List>
-        <Link to="library" style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/></Link>
-        <ListItem leftIcon={<Library />} rightIcon={<Arrow />}primaryText="Science Library"/>
-        <ListItem leftIcon={<Library />} rightIcon={<Arrow />}primaryText="Main Library"/>
-        <ListItem leftIcon={<Library />} rightIcon={<Arrow />} primaryText="Cruciform"/>
+        {this.state.spaces.map(function(item, i){
+          return (<Link to={'/library/' + item.id} key={i} style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} key={i} primaryText={item.name} id={item.id} /></Link>)
+        },this)}
       </List>
       </div>
       </div>
