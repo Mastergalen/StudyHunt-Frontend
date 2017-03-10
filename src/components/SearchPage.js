@@ -35,6 +35,7 @@ class SearchPage extends Component {
         console.log('parsing failed', ex)
       }
     }
+    else this.setState({spaces: []});
   }
 
   render() {
@@ -51,7 +52,8 @@ class SearchPage extends Component {
             autoFocus
           />
         </center>
-        <div className="list-container">
+
+        <div className={this.state.spaces.length!=0 ? 'list-container' : ''}>
         <List>
           {this.state.spaces.map(function(item, i){
             return (<Link to={'/library/' + item.id} key={i} style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} key={i} primaryText={item.name} id={item.id} /></Link>)

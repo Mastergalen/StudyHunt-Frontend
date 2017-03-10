@@ -7,8 +7,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import 'whatwg-fetch';
 import { Link } from 'react-router';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import env from '../constants/env';
+import { Circle } from 'rc-progress';
 
 const underlineStyle = {
   borderColor: 'orange'
@@ -19,7 +20,8 @@ class SearchPage extends Component {
     libraryCapacity: '',
     availableSeats: '',
     seats: [],
-    counter: 0
+    counter: 0,
+    availablePercentage: 0
   }
   async getLibrary() {
 
@@ -36,10 +38,12 @@ class SearchPage extends Component {
                       seat3: json.seats.spaceMap.seats[i+2],
                       seat4: json.seats.spaceMap.seats[i+3]})
         }
+        var percentage = parseInt((json.available * 100)/json.capacity);
         this.setState({libraryName: json.name,
                        libraryCapacity: json.capacity,
                        availableSeats: json.available,
-                       seats: seats});
+                       seats: seats,
+                       availablePercentage: percentage});
       } catch (ex) {
         console.log('parsing failed', ex)
       }
@@ -67,20 +71,29 @@ class SearchPage extends Component {
       <RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={browserHistory.goBack}/>
         <center>
           <h2> {this.state.libraryName} </h2>
-          <div> Available spaces: {this.state.availableSeats}</div>
-          <div> Capacity: {this.state.libraryCapacity}</div>
         </center>
+        <div className="libraryInfo">
+          <div className="circleSizeLibrary">
+            <Circle percent={this.state.availablePercentage} strokeWidth="10" trailWidth="10" strokeColor="#43A047 " trailColor="#ffcdd2"/>
+          </div>
+          <div className="infoText">
+            <div className="infoTextinner">
+              <div className="spaceText"> Available spaces: {this.state.availableSeats}</div>
+              <div className="spaceText"> Capacity: {this.state.libraryCapacity}</div>
+            </div>
+          </div>
+        </div>
        <div className="seating-area">
       {
 
         this.state.seats.map(function(item,i) {
           return(
             <div className="four-seats" key={i}>
-            {item.seat1.is_vacant ? <div className="empty-seat"> {item.seat1.id} </div> : <div className="taken-seat"> {item.seat1.id} </div>}
-            {item.seat2.is_vacant ? <div className="empty-seat"> {item.seat2.id} </div> : <div className="taken-seat"> {item.seat2.id} </div>}
-            <div className="table-container"> <div className="table"> Table </div> </div>
-            {item.seat3.is_vacant ? <div className="empty-seat"> {item.seat3.id} </div> : <div className="taken-seat"> {item.seat3.id} </div>}
-            {item.seat4.is_vacant ? <div className="empty-seat"> {item.seat4.id} </div> : <div className="taken-seat"> {item.seat4.id} </div>}
+              {item.seat1.is_vacant ? <div className="empty-seat"> {item.seat1.id} </div> : <div className="taken-seat"> {item.seat1.id} </div>}
+              {item.seat2.is_vacant ? <div className="empty-seat"> {item.seat2.id} </div> : <div className="taken-seat"> {item.seat2.id} </div>}
+              <div className="table-container"> <div className="table"> Table </div> </div>
+              {item.seat3.is_vacant ? <div className="empty-seat"> {item.seat3.id} </div> : <div className="taken-seat"> {item.seat3.id} </div>}
+              {item.seat4.is_vacant ? <div className="empty-seat"> {item.seat4.id} </div> : <div className="taken-seat"> {item.seat4.id} </div>}
             </div>)
         })
       }
