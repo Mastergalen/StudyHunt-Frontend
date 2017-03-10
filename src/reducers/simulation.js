@@ -3,7 +3,8 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   socket: null,
   temperature: "N/A",
-  lights: "N/A"
+  roomTemperature: "N/A",
+  lights: "N/A",
 };
 
 export default function ui(state = initialState, action) {
@@ -16,6 +17,7 @@ export default function ui(state = initialState, action) {
     case types.UPDATE_FRONTEND: {
       return {
         ...state,
+        roomTemperature: action.roomTemperature,
         temperature: action.temperature,
         lights: action.lights
       }
