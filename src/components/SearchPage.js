@@ -47,6 +47,7 @@ class SearchPage extends Component {
             hintText="Search here"
             underlineStyle={underlineStyle}
             onChange={this.handleSearch.bind(this)}
+            autoFocus
           />
         </center>
         <div className="list-container">
