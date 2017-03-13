@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router';
 import Library from 'material-ui/svg-icons/action/account-balance';
-import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import RaisedButton from 'material-ui/RaisedButton';
 import env from '../constants/env';
 
@@ -11,15 +10,14 @@ class BrowseAZ extends Component {
     spaces:[]
   }
   async getLibraries() {
+    try {
+      let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries`)
 
-      try {
-        let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries`)
-
-        let json = await res.json();
-        this.setState({spaces: json});
-      } catch (ex) {
-        console.log('parsing failed', ex)
-      }
+      let json = await res.json();
+      this.setState({spaces: json});
+    } catch (ex) {
+      console.log('parsing failed', ex)
+    }
   }
   componentDidMount(){
     this.getLibraries();

@@ -53,7 +53,7 @@ class SearchPage extends Component {
           />
         </center>
 
-        <div className={this.state.spaces.length!=0 ? 'list-container' : ''}>
+        <div className={this.state.spaces.length !== 0 ? 'list-container' : ''}>
         <List>
           {this.state.spaces.map(function(item, i){
             return (<Link to={'/library/' + item.id} key={i} style={{textDecoration:'none'}}><ListItem leftIcon={<Library />} key={i} primaryText={item.name} id={item.id} /></Link>)

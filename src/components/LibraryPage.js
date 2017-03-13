@@ -1,52 +1,51 @@
 import React, {Component} from 'react';
-import {List, ListItem} from 'material-ui/List';
-import IconButton from 'material-ui/IconButton';
-import Library from 'material-ui/svg-icons/action/account-balance';
-import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import 'whatwg-fetch';
-import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import env from '../constants/env';
 import { Circle } from 'rc-progress';
 
-const underlineStyle = {
-  borderColor: 'orange'
-}
-class SearchPage extends Component {
-  state = {
-    libraryName: '',
-    libraryCapacity: '',
-    availableSeats: '',
-    seats: [],
-    counter: 0,
-    availablePercentage: 0
+class LibraryPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      libraryName: '',
+      libraryCapacity: '',
+      availableSeats: '',
+      seats: [],
+      counter: 0,
+      availablePercentage: 0
+    }
   }
+
   async getLibrary() {
+    try {
+      let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries/${this.props.params.libraryId}`)
 
-      try {
-        let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries/${this.props.params.libraryid}`)
-
-        let json = await res.json();
-        var seats = [];
-        var counter = 0;
-        for(var i = 0; i< json.capacity; i+=4){
-          seats.push({table:counter++,
-                      seat1: json.seats.spaceMap.seats[i],
-                      seat2: json.seats.spaceMap.seats[i+1],
-                      seat3: json.seats.spaceMap.seats[i+2],
-                      seat4: json.seats.spaceMap.seats[i+3]})
-        }
-        var percentage = parseInt((json.available * 100)/json.capacity);
-        this.setState({libraryName: json.name,
-                       libraryCapacity: json.capacity,
-                       availableSeats: json.available,
-                       seats: seats,
-                       availablePercentage: percentage});
-      } catch (ex) {
-        console.log('parsing failed', ex)
+      let json = await res.json();
+      var percentage = parseInt((json.available * 100)/json.capacity, 10);
+      var seats = [];
+      var counter = 0;
+      for(var i = 0; i< json.capacity; i+=4){
+        seats.push({table:counter++,
+          seat1: json.seats.spaceMap.seats[i],
+          seat2: json.seats.spaceMap.seats[i+1],
+          seat3: json.seats.spaceMap.seats[i+2],
+          seat4: json.seats.spaceMap.seats[i+3]
+        });
       }
+
+      this.setState({
+        libraryName: json.name,
+        libraryCapacity: json.capacity,
+        availableSeats: json.available,
+        seats: seats,
+        availablePercentage: percentage
+      });
+    } catch (ex) {
+      console.log('parsing failed', ex)
+    }
   }
   componentDidMount(){
     this.getLibrary();
@@ -103,4 +102,10 @@ class SearchPage extends Component {
   }
 }
 
-export default SearchPage;
+LibraryPage.propTypes = {
+  params: React.PropTypes.shape({
+    libraryId: React.PropTypes.string.isRequired
+  })
+};
+
+export default LibraryPage;

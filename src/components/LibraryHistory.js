@@ -63,7 +63,7 @@ class LibraryHistory extends Component {
           yType="linear"
           yDomain={[0, this.state.yMax]}
         >
-          <HorizontalGridLines tickTotal={this.state.yMax} />
+          <HorizontalGridLines />
           <LineMarkSeries
             data={this.state.data}
             size={5}
@@ -71,7 +71,7 @@ class LibraryHistory extends Component {
             onValueMouseOut={this._forgetHint.bind(this)}
           />
           <XAxis title="Time" />
-          <YAxis title="Free seats" tickTotal={this.state.yMax} />
+          <YAxis title="Free seats" />
           {hint ?
             <Hint value={hint}/> :
             null

@@ -14,25 +14,32 @@ var alignedItem = {
 }
 
 class Dashboard extends Component {
-  state = {
-    energyEfficiency: 0,
-    availablePercentage: 0
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      energyEfficiency: 0,
+      availablePercentage: 0
+    }
+
   }
+
   async getLibrary() {
+    try {
+      let res = await fetch(`${env.BACKEND_URL}/api/v1/global`)
 
-      try {
-        let res = await fetch(`${env.BACKEND_URL}/api/v1/global`)
-
-        let json = await res.json();
-        //console.log(json);
-        var percentage = parseInt((json.vacantSeats * 100)/json.capacity);
-        console.log(json);
-        this.setState({energyEfficiency: json.energyEfficiency,
-                       availablePercentage: percentage,
-                       })
-      } catch (ex) {
-        console.log('parsing failed', ex)
-      }
+      let json = await res.json();
+      //console.log(json);
+      var percentage = parseInt((json.vacantSeats * 100)/json.capacity, 10);
+      console.log(json);
+      this.setState({
+        energyEfficiency: json.energyEfficiency,
+        availablePercentage: percentage,
+      });
+    } catch (ex) {
+      console.log('parsing failed', ex)
+    }
   }
   componentDidMount(){
     this.getLibrary();
@@ -44,7 +51,7 @@ class Dashboard extends Component {
         <CardMedia
           overlay={<CardTitle title="Welcome to StudyHunter"/>}
         >
-          <img alt="Library Header" className="main-image" src="https://www.ucl.ac.uk/new-students/newsfeed/0000-student-life-new/ucl_library.jpg" />
+          <img alt="Library Header" className="main-image" src="//www.ucl.ac.uk/new-students/newsfeed/0000-student-life-new/ucl_library.jpg" />
         </CardMedia>
         <CardActions style={actionStyles}>
         <div>
