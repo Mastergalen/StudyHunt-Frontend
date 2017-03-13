@@ -66,7 +66,9 @@ class Dashboard extends Component {
         </CardActions>
       </Card>
       <CardText>
-        Our system aims to help you find study spaces easily.
+        <p>Browse all of the available libraries or search for your favorite one. We'll tell you exactly how many free spaces are left and where to find them.</p>
+        <p>We ask of you to sit next to other people, so that we can save even more energy than before.</p>
+        <p>If you really want to stay isolated, we'll turn on the heating and the lights a few seconds after you've sat down.</p>
       </CardText>
       <div className="inLine">
         <div className="circleProgress">

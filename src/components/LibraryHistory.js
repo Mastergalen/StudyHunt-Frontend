@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {makeWidthFlexible, XYPlot, XAxis, YAxis, Hint, HorizontalGridLines, LineMarkSeries} from 'react-vis';
 import env from '../constants/env';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import { browserHistory } from 'react-router';
+
 import "react-vis/dist/style.css";
 
 const FlexibleXYPlot = makeWidthFlexible(XYPlot);
@@ -56,7 +59,10 @@ class LibraryHistory extends Component {
     const {hint} = this.state;
     return (
       <div>
-        <h2>Free Seats Last 24 hours</h2>
+        <div className="title-back">
+          <div><RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={browserHistory.goBack}/></div>
+          <h3 className="stats-title">Free Seats Last 24 hours</h3>
+        </div>
         <FlexibleXYPlot
           height={600}
           xType="time-utc"

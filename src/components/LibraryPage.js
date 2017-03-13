@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 import { browserHistory } from 'react-router';
 import env from '../constants/env';
 import { Circle } from 'rc-progress';
+import { Link } from 'react-router';
 
 class LibraryPage extends Component {
   constructor(props) {
@@ -68,6 +69,9 @@ class LibraryPage extends Component {
     return (
       <div >
       <RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={browserHistory.goBack}/>
+      <Link to={'/library/' + this.props.params.libraryId + '/history'} key="history" style={{textDecoration:'none'}}>
+        <RaisedButton className="stats-button" primary={true} label="Stats"/>
+      </Link>
         <center>
           <h2> {this.state.libraryName} </h2>
         </center>
