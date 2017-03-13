@@ -29,6 +29,7 @@
     "react-router-redux": "^4.0.8",
     "react-sticky": "^5.0.5",
     "react-tap-event-plugin": "^2.0.1",
+    "react-vis": "^1.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "socket.io-client": "^1.7.3",
