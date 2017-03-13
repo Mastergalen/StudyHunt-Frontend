@@ -77,7 +77,7 @@ class LibraryPage extends Component {
         </center>
         <div className="libraryInfo">
           <div className="circleSizeLibrary">
-            <Circle percent={this.state.availablePercentage} strokeWidth="10" trailWidth="10" strokeColor="#43A047 " trailColor="#ffcdd2"/>
+            <Circle percent={this.state.availablePercentage} strokeWidth="10" trailWidth="10" strokeColor="#43A047 "/>
           </div>
           <div className="infoText">
             <div className="infoTextinner">

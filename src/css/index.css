@@ -254,3 +254,40 @@ body {
 .stats-title{
   margin-left:10px;
 }
+.description{
+  font-family: "Helvetica", sans-serif;
+  font-size: 22px;
+  text-align: center;
+  text-justify: inter-word;
+  margin:0;
+  background-color: #F5F5F5;
+  color:black;
+}
+.colored-textarea{
+  background-color:#4BA6BD;
+  padding-top:30px;
+  padding-bottom:20px;
+  padding-left:10%;
+  padding-right:10%;
+  color:white;
+}
+.grey-textarea {
+  background-color: #ECEFF1;
+  padding-top:30px;
+  padding-bottom:20px;
+  padding-left:10%;
+  padding-right:10%;
+}
+@media only screen and (max-width: 500px) {
+  .description{
+    font-size: 18px;
+    text-align: justify;
+  }
+  .colored-textarea{
+    padding-top:20px;
+  }
+  .grey-textarea {
+    padding-top:20px;
+
+  }
+}

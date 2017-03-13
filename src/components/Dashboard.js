@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardMedia, CardTitle} from 'material-ui/Card';
 import { Circle } from 'rc-progress';
 import env from '../constants/env';
 var actionStyles = {
@@ -65,23 +65,37 @@ class Dashboard extends Component {
         </div>
         </CardActions>
       </Card>
-      <CardText>
-        <p>Browse all of the available libraries or search for your favorite one. We'll tell you exactly how many free spaces are left and where to find them.</p>
-        <p>We ask of you to sit next to other people, so that we can save even more energy than before.</p>
-        <p>If you really want to stay isolated, we'll turn on the heating and the lights a few seconds after you've sat down.</p>
-      </CardText>
-      <div className="inLine">
-        <div className="circleProgress">
-          <p> Energy efficiency </p>
-          <div className="circleSize">
-            <Circle percent={this.state.energyEfficiency} strokeWidth="10" trailWidth="10" strokeColor="#43A047 "/>
-          </div>
+
+      <div className="description">
+        <div className="grey-textarea">
+          <div>Browse all of the available libraries or search for your favorite one. We'll show you where the free spaces are.</div>
+          <center>
+            <div className="circleProgress">
+              <p> Free spaces </p>
+              <div className="circleSize">
+                <Circle
+                  percent={this.state.availablePercentage}
+                  strokeWidth="10"
+                  trailWidth="10"
+                  strokeColor="#43A047 "/>
+              </div>
+            </div>
+          </center>
         </div>
-        <div className="circleProgress">
-          <p> Free spaces </p>
-          <div className="circleSize">
-            <Circle percent={this.state.availablePercentage} strokeWidth="10" trailWidth="10" strokeColor="#43A047 "/>
-          </div>
+        <div className="colored-textarea">
+          <div>We ask of you to sit next to other people, so that we can save energy.</div>
+          <center>
+            <div className="circleProgress">
+              <p> Energy efficiency </p>
+              <div className="circleSize">
+                <Circle
+                  percent={this.state.energyEfficiency}
+                  strokeWidth="10"
+                  trailWidth="10"
+                  strokeColor="#81C784 "/>
+              </div>
+            </div>
+          </center>
         </div>
       </div>
     </div>
