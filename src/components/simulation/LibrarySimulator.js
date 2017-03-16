@@ -36,18 +36,24 @@ class LibrarySimulator extends Component {
         }
       },
       layout: {
-        rows: [{
-          columns: [
-            {
-              className: 'col-md-6',
-              widgets: [{key: 'Thermostat'}],
-            },
-            {
-              className: 'col-md-6',
-              widgets: [{key: 'Light'}],
-            }
-          ],
-        }],
+        rows: [
+          {
+            columns: [
+              {
+                className: 'col-md-12',
+                widgets: [{key: 'Thermostat'}],
+              }
+            ],
+          },
+          {
+            columns: [
+              {
+                className: 'col-md-12',
+                widgets: [{key: 'Light'}],
+              }
+            ]
+          }
+        ],
       }
     };
   }

@@ -37,8 +37,8 @@ class Dashboard extends Component {
         energyEfficiency: json.energyEfficiency,
         availablePercentage: percentage,
       });
-    } catch (ex) {
-      console.log('parsing failed', ex)
+    } catch (e) {
+      console.log('parsing failed', e);
     }
   }
   componentDidMount(){

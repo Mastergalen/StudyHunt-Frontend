@@ -21,7 +21,7 @@ class ThermostatWidget extends Component {
 
 ThermostatWidget.propTypes = {
   temperature: React.PropTypes.string.isRequired,
-  roomTemperature: React.PropTypes.string.isRequired
+  roomTemperature: React.PropTypes.node.isRequired
 }
 
 function mapStateToProps(state) {

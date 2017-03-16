@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import 'whatwg-fetch';
-import { browserHistory } from 'react-router';
-import env from '../constants/env';
 import { Circle } from 'rc-progress';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import SeatMap from './partials/SeatMap.jsx';
+import { browserHistory } from 'react-router';
+import env from '../constants/env';
+
 
 class LibraryPage extends Component {
   constructor(props) {
@@ -25,23 +27,13 @@ class LibraryPage extends Component {
       let res = await fetch(`${env.BACKEND_URL}/api/v1/libraries/${this.props.params.libraryId}`)
 
       let json = await res.json();
-      var percentage = parseInt((json.available * 100)/json.capacity, 10);
-      var seats = [];
-      var counter = 0;
-      for(var i = 0; i< json.capacity; i+=4){
-        seats.push({table:counter++,
-          seat1: json.seats.spaceMap.seats[i],
-          seat2: json.seats.spaceMap.seats[i+1],
-          seat3: json.seats.spaceMap.seats[i+2],
-          seat4: json.seats.spaceMap.seats[i+3]
-        });
-      }
+      let percentage = parseInt((json.available * 100)/json.capacity, 10);
 
       this.setState({
         libraryName: json.name,
         libraryCapacity: json.capacity,
         availableSeats: json.available,
-        seats: seats,
+        seats: json.seats.spaceMap.seats,
         availablePercentage: percentage
       });
     } catch (ex) {
@@ -55,16 +47,7 @@ class LibraryPage extends Component {
   componentWillUnmount(){
     clearInterval(this._interval);
   }
-  /*
-  <div className="four-seats">
-  <div className="table-container"> <div className="half-table-top"> Table </div> </div>
-  <div className="empty-seat"> 1 </div>
-  <div className="taken-seat"> 2 </div>
-  <div className="empty-seat"> 3 </div>
-  <div className="empty-seat"> 4 </div>
-  <div className="table-container"> <div className="half-table-bottom"> Table </div> </div>
-  </div>
-  */
+
   render() {
     return (
       <div >
@@ -86,21 +69,7 @@ class LibraryPage extends Component {
             </div>
           </div>
         </div>
-       <div className="seating-area">
-      {
-
-        this.state.seats.map(function(item,i) {
-          return(
-            <div className="four-seats" key={i}>
-              {item.seat1.is_vacant ? <div className="empty-seat"> {item.seat1.id} </div> : <div className="taken-seat"> {item.seat1.id} </div>}
-              {item.seat2.is_vacant ? <div className="empty-seat"> {item.seat2.id} </div> : <div className="taken-seat"> {item.seat2.id} </div>}
-              <div className="table-container"> <div className="table"> Table </div> </div>
-              {item.seat3.is_vacant ? <div className="empty-seat"> {item.seat3.id} </div> : <div className="taken-seat"> {item.seat3.id} </div>}
-              {item.seat4.is_vacant ? <div className="empty-seat"> {item.seat4.id} </div> : <div className="taken-seat"> {item.seat4.id} </div>}
-            </div>)
-        })
-      }
-      </div>
+         <SeatMap seats={this.state.seats} />
       </div>
     );
   }
