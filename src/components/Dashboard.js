@@ -20,7 +20,9 @@ class Dashboard extends Component {
 
     this.state = {
       energyEfficiency: 0,
-      availablePercentage: 0
+      availablePercentage: 0,
+      vacantSeats: 0,
+      capacity: 0
     }
 
   }
@@ -36,6 +38,8 @@ class Dashboard extends Component {
       this.setState({
         energyEfficiency: json.energyEfficiency,
         availablePercentage: percentage,
+        vacantSeats: json.vacantSeats,
+        capacity: json.capacity,
       });
     } catch (e) {
       console.log('parsing failed', e);
@@ -71,7 +75,7 @@ class Dashboard extends Component {
           <div>Browse all of the available libraries or search for your favorite one. We'll show you where the free spaces are.</div>
           <center>
             <div className="circleProgress">
-              <p> Free spaces </p>
+              <p> Free spaces: {this.state.vacantSeats}/{this.state.capacity} </p>
               <div className="circleSize">
                 <Circle
                   percent={this.state.availablePercentage}
@@ -86,7 +90,7 @@ class Dashboard extends Component {
           <div>We ask of you to sit next to other people, so that we can save energy.</div>
           <center>
             <div className="circleProgress">
-              <p> Energy efficiency </p>
+              <p> Energy efficiency: {this.state.energyEfficiency}% </p>
               <div className="circleSize">
                 <Circle
                   percent={this.state.energyEfficiency}
