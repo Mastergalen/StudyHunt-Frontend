@@ -77,7 +77,7 @@ class LibraryPage extends Component {
 
 LibraryPage.propTypes = {
   params: React.PropTypes.shape({
-    libraryId: React.PropTypes.string.isRequired
+    libraryId: React.PropTypes.number.isRequired
   })
 };
 

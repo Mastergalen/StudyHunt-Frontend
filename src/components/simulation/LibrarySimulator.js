@@ -4,6 +4,7 @@ import Dashboard from 'react-dazzle';
 import ThermostatWidget from './widgets/ThermostatWidget';
 import CustomFrame from './widgets/CustomFrame';
 import LightWidget from './widgets/LightWidget';
+import LuminosityWidget from './widgets/LuminosityWidget';
 
 import * as simulationActions from '../../actions/simulation';
 
@@ -33,6 +34,9 @@ class LibrarySimulator extends Component {
         },
         Light: {
           type: LightWidget
+        },
+        Luminosity: {
+          type: LuminosityWidget
         }
       },
       layout: {
@@ -40,8 +44,12 @@ class LibrarySimulator extends Component {
           {
             columns: [
               {
-                className: 'col-md-12',
+                className: 'col-md-6',
                 widgets: [{key: 'Thermostat'}],
+              },
+              {
+                className: 'col-md-6',
+                widgets: [{key: 'Luminosity'}]
               }
             ],
           },

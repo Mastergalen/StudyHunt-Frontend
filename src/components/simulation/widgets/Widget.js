@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 const styles = {
   container: {
-    padding: '20px'
+    padding: '10px'
   },
   center: {
     textAlign: 'center'
@@ -10,7 +10,7 @@ const styles = {
   content: {
     fontSize: '50px',
     fontWeight: 300,
-    padding: '49px 0',
+    padding: '30px 0',
     color: 'rgba(255, 255, 255, 0.7)'
   },
   title: {

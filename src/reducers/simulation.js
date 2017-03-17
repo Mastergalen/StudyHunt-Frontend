@@ -4,6 +4,7 @@ const initialState = {
   socket: null,
   temperature: "N/A",
   roomTemperature: "N/A",
+  luminosity: -1,
   lights: "N/A",
 };
 
@@ -19,7 +20,8 @@ export default function ui(state = initialState, action) {
         ...state,
         roomTemperature: action.roomTemperature,
         temperature: action.temperature,
-        lights: action.lights
+        lights: action.lights,
+        luminosity: action.luminosity
       }
     }
     case types.SERVER_DISCONNECTED: {
