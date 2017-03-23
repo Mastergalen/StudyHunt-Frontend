@@ -291,3 +291,7 @@ body {
 
   }
 }
+
+.widget p {
+  margin: 0
+}

@@ -23,7 +23,7 @@ class Widget extends Component {
     const {title, children, backgroundColor} = this.props;
 
     return (
-      <div style={{...styles.container, backgroundColor}}>
+      <div className="widget" style={{...styles.container, backgroundColor}}>
         <div style={styles.center}>
           <div style={styles.content}>{children}</div>
           <div style={styles.title}>{title}</div>
