@@ -53,7 +53,7 @@ class Dashboard extends Component {
     <div>
       <Card>
         <CardMedia
-          overlay={<CardTitle title="Welcome to StudyHunter"/>}
+          overlay={<CardTitle title="Welcome to StudyHunt"/>}
         >
           <img alt="Library Header" className="main-image" src="//www.ucl.ac.uk/new-students/newsfeed/0000-student-life-new/ucl_library.jpg" />
         </CardMedia>
