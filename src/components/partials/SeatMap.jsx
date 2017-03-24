@@ -36,8 +36,6 @@ class SeatMap extends Component {
       tableText = isLightOn ? "Lights on" : "Lights off";
     }
 
-    console.log();
-
     return (
       <div className="seating-area">
         {seatMap.map(function(item,i) {

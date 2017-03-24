@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import 'whatwg-fetch';
 import { Circle } from 'rc-progress';
 import { Link } from 'react-router';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import SeatMap from './partials/SeatMap.jsx';
 import { browserHistory } from 'react-router';
@@ -16,6 +17,7 @@ class LibraryPage extends Component {
       libraryName: '',
       libraryCapacity: '',
       availableSeats: '',
+      willBeBusy: false,
       seats: [],
       counter: 0,
       availablePercentage: 0
@@ -33,6 +35,7 @@ class LibraryPage extends Component {
         libraryName: json.name,
         libraryCapacity: json.capacity,
         availableSeats: json.available,
+        willBeBusy: json.willBeBusy,
         seats: json.seats.spaceMap.seats,
         availablePercentage: percentage
       });
@@ -49,12 +52,27 @@ class LibraryPage extends Component {
   }
 
   render() {
+    let busyWarning = null;
+
+    if(this.state.willBeBusy) {
+      busyWarning = (
+        <Card style={{maxWidth: 500, margin: '0 auto', marginBottom: 20, backgroundColor: '#FFA726'}}>
+          <CardHeader
+            title="Warning"
+          />
+          <CardText>
+            Usually, it will get busy soon
+          </CardText>
+        </Card>
+      );
+    }
+
     return (
       <div >
-      <RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={browserHistory.goBack}/>
-      <Link to={'/library/' + this.props.params.libraryId + '/history'} key="history" style={{textDecoration:'none'}}>
-        <RaisedButton className="stats-button" primary={true} label="Stats"/>
-      </Link>
+        <RaisedButton className="back-button" primary={true} label="< Back" onTouchTap={browserHistory.goBack}/>
+        <Link to={'/library/' + this.props.params.libraryId + '/history'} key="history" style={{textDecoration:'none'}}>
+          <RaisedButton className="stats-button" primary={true} label="Stats"/>
+        </Link>
         <center>
           <h2> {this.state.libraryName} </h2>
         </center>
@@ -69,7 +87,8 @@ class LibraryPage extends Component {
             </div>
           </div>
         </div>
-         <SeatMap seats={this.state.seats} />
+        {busyWarning}
+        <SeatMap seats={this.state.seats} />
       </div>
     );
   }
@@ -77,7 +96,7 @@ class LibraryPage extends Component {
 
 LibraryPage.propTypes = {
   params: React.PropTypes.shape({
-    libraryId: React.PropTypes.number.isRequired
+    libraryId: React.PropTypes.string.isRequired
   })
 };
 
