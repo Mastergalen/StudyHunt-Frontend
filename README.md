@@ -4,6 +4,8 @@ http://studyhunt.galenhan.com
 
 React based frontend for StudyHunt.
 
+Allows you to track library seat availability using the GridEye sensor.
+
 ## Installation
 
 ```
